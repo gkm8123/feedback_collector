@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Feedback Collector</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <h1>Leave Your Feedback</h1>
+  <form action="submit.php" method="POST" onsubmit="return validateForm();">
+    <input type="text" name="name" placeholder="Your Name (optional)">
+    <input type="email" name="email" placeholder="Your Email (optional)">
+    <textarea name="message" placeholder="Your Feedback" required></textarea>
+    <button type="submit">Submit</button>
+  </form>
+
+  <div id="feedback-display">
+    <h2>Previous Feedback</h2>
+    <?php
+      if (file_exists("feedback.txt")) {
+        echo nl2br(htmlspecialchars(file_get_contents("feedback.txt")));
+      }
+    ?>
+  </div>
+</body>
+</html>
